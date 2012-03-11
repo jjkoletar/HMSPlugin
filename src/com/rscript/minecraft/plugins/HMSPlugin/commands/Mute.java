@@ -43,7 +43,7 @@ public class Mute implements ICommand {
 			    muted.add(args[0].toLowerCase());
 			}
 			catch(NumberFormatException exception) {
-				player.sendMessage("you suck");
+				player.sendMessage("You did something wrong, idiot.");
 				return;
 			}
 		}

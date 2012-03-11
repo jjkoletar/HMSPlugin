@@ -81,6 +81,10 @@ public class HMSPlugin extends JavaPlugin{
 					return true;
 
 				Player player = (Player) sender;
+				if(command.getPermission() == null) {
+					command.processCommand(player, args);
+					return true;
+				}
 				if(player.hasPermission(command.getPermission())) {
 					command.processCommand(player, args);
 				}

@@ -15,7 +15,7 @@ public class HMSEntityListener implements Listener{
 	
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event) {
-		if(event.getEntity().getLocation().getWorld().getName().contains("Adventure")) {
+		/*if(event.getEntity().getLocation().getWorld().getName().contains("Adventure")) {
 			Player player = null;
 			if(event.getEntity() instanceof Player){
 				player = (Player)event.getEntity();
@@ -25,6 +25,7 @@ public class HMSEntityListener implements Listener{
 			else
 				return;
 		}
+		*/
 	}
 
 	
