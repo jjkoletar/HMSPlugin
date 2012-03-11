@@ -1,10 +1,11 @@
 package com.rscript.minecraft.plugins.HMSPlugin;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityListener;
 
-public class HMSEntityListener extends EntityListener{
+public class HMSEntityListener implements Listener{
 
 	private HMSPlugin plugin;
 	
@@ -12,6 +13,7 @@ public class HMSEntityListener extends EntityListener{
 		this.plugin = plugin;
 	}
 	
+	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event) {
 		if(event.getEntity().getLocation().getWorld().getName().contains("Adventure")) {
 			Player player = null;

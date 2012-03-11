@@ -2,8 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Aidan/Java/bukkit-1.0.0-R1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Aidan/Downloads/craftbukkit-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aidan/Git/bukkit-1.2.3-R0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Aidan/Java/joda-time-2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
