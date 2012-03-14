@@ -9,12 +9,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.rscript.minecraft.plugins.HMSPlugin.commands.Ban;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.ICommand;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Experience;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Hardcore;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Inventory;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Mute;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Nick;
+import com.rscript.minecraft.plugins.HMSPlugin.commands.Unban;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Unmute;
 
 public class HMSPlugin extends JavaPlugin{
@@ -28,7 +30,7 @@ public class HMSPlugin extends JavaPlugin{
 	Unmute unmute = new Unmute(this);
 	Hardcore hardcore = new Hardcore(this);
 	
-	ICommand[] cmd = new ICommand[6];
+	ICommand[] cmd = new ICommand[8];
 		
 	
 	HMSPlayerListener playerListener = new HMSPlayerListener(this);
@@ -42,6 +44,8 @@ public class HMSPlugin extends JavaPlugin{
 		cmd[3] = new Unmute(this);
 		cmd[4] = new Hardcore(this);
 		cmd[5] = new Nick(this);
+		cmd[6] = new Ban();
+		cmd[7] = new Unban();
 	}
 	
 	public void onDisable() {
@@ -81,11 +85,11 @@ public class HMSPlugin extends JavaPlugin{
 					return true;
 
 				Player player = (Player) sender;
-				if(command.getPermission() == null) {
+				if(command.usesPermissions() == false) {
 					command.processCommand(player, args);
 					return true;
 				}
-				if(player.hasPermission(command.getPermission())) {
+				if(player.hasPermission("hawk." + cmd.getName())) {
 					command.processCommand(player, args);
 				}
 				return true;

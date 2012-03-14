@@ -34,9 +34,9 @@ public class Unmute implements ICommand {
 		return "unmute";
 	}
 
-	public String getPermission() {
+	public boolean usesPermissions() {
 		// TODO Auto-generated method stub
-		return "hawk.unmute";
+		return true;
 	}
 
 }

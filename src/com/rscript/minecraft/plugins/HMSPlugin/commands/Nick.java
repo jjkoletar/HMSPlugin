@@ -51,9 +51,9 @@ public class Nick implements ICommand {
 		return "nick";
 	}
 
-	public String getPermission() {
+	public boolean usesPermissions() {
 		// TODO Auto-generated method stub
-		return "hawk.nick";
+		return true;
 	}
 
 }

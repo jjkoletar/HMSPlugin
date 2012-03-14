@@ -9,5 +9,6 @@ public interface ICommand {
 		public void onDisable();
 		
 		public String getCommand();
-		public String getPermission();
+		
+		public boolean usesPermissions();
 }

@@ -21,3 +21,9 @@ commands:
     nick:
         permission: hawk.nick
         usage: /nick <username> [nickname]
+    ban:
+        permission: hawk.ban
+        usage: /ban [username] <reason>
+    unban:
+        permission: hawk.unban
+        usage: /unban [username]

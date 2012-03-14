@@ -113,9 +113,9 @@ public class Inventory implements ICommand {
 		return "inv";
 	}
 
-	public String getPermission() {
+	public boolean usesPermissions() {
 		// TODO Auto-generated method stub
-		return "hawk.inventory";
+		return true;
 	}
 
 

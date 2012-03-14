@@ -59,9 +59,8 @@ public class Experience implements ICommand {
 		return "exp";
 	}
 
-	public String getPermission() {
-		// TODO Auto-generated method stub
-		return "hawk.experience";
+	public boolean usesPermissions() {
+		return true;
 	}
 
 	

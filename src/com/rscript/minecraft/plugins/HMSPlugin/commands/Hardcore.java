@@ -46,9 +46,9 @@ public class Hardcore implements ICommand {
 		return "hardcore";
 	}
 
-	public String getPermission() {
+	public boolean usesPermissions() {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 }
