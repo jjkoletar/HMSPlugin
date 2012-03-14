@@ -24,9 +24,9 @@ public class Hawk implements ICommand {
 		return null;
 	}
 
-	public String getPermission() {
+	public boolean usesPermissions() {
 		// TODO Auto-generated method stub
-		return "hawk.hardcore";
+		return false;
 	}
 
 }

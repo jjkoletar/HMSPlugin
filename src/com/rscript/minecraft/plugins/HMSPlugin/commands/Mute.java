@@ -64,9 +64,9 @@ public class Mute implements ICommand {
 		return "mute";
 	}
 
-	public String getPermission() {
+	public boolean usesPermissions() {
 		// TODO Auto-generated method stub
-		return "hawk.mute";
+		return true;
 	}
 
 }

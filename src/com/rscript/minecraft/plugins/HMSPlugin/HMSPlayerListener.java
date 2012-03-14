@@ -1,13 +1,24 @@
 package com.rscript.minecraft.plugins.HMSPlugin;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
 import org.bukkit.ChatColor;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
@@ -39,32 +50,24 @@ public class HMSPlayerListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		if(event.getPlayer().getLocation().getWorld().getName().contains("Adventure")) {
-			if(plugin.list.isDead(event.getPlayer().getName())) {
-				event.getPlayer().teleport(plugin.getServer().getWorld("World").getSpawnLocation());
-				event.getPlayer().sendMessage(ChatColor.BLUE.toString() + "You are dead in the hardcore world!");
+	public void onPlayerLogin(PlayerLoginEvent event) {
+	try {
+			URL url = new URL("http://hawksservers.com/webadmin/isBanned.php?uname=" + URLEncoder.encode(event.getPlayer().getName(), "UTF-8"));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+			String result = reader.readLine();
+			if(Boolean.parseBoolean(result) || result == "tempbanned") {
+				reader.close();
+				url = new URL("http://hawksservers.com/webadmin/getBanReason.php?uname=" + URLEncoder.encode(event.getPlayer().getName(), "UTF-8") + "&type=" + URLEncoder.encode(result, "UTF-8"));
+				reader = new BufferedReader(new InputStreamReader(url.openStream()));
+				event.disallow(PlayerLoginEvent.Result.KICK_BANNED,  "You are banned: " + reader.readLine());
+				reader.close();
 			}
-		}
-	}
-	
-	@EventHandler
-	public void onPlayerTeleport(PlayerTeleportEvent event) {
-		if(event.getTo().getWorld().getName().contains("Adventure")) {
-			if(plugin.list.isDead(event.getPlayer().getName())) {
-				event.setTo(plugin.getServer().getWorld("World").getSpawnLocation());
-				event.getPlayer().sendMessage(ChatColor.BLUE.toString() + "You are dead in the hardcore world!");
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		if(event.getRespawnLocation().getWorld().getName().contains("Adventure")) {
-			if(plugin.list.isDead(event.getPlayer().getName())) {
-				event.setRespawnLocation(plugin.getServer().getWorld("World").getSpawnLocation());
-				event.getPlayer().sendMessage(ChatColor.BLUE.toString() + "You are dead in the hardcore world!");
-			}
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
