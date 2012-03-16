@@ -2,10 +2,8 @@ package com.rscript.minecraft.plugins.HMSPlugin.commands;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 
 import org.bukkit.entity.Player;

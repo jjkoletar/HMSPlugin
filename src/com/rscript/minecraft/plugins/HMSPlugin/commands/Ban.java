@@ -1,13 +1,11 @@
 package com.rscript.minecraft.plugins.HMSPlugin.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 
 public class Ban implements ICommand {
@@ -22,6 +20,11 @@ public class Ban implements ICommand {
 			try {
 				URL url = new URL("http://hawksservers.com/webadmin/banUser.php?" + "uname=" + URLEncoder.encode(args[0], "UTF-8") + "&reason=" + URLEncoder.encode("You are banned on this server!", "UTF-8"));
 				url.openStream();
+				player.sendMessage(ChatColor.DARK_RED.toString() + "You have banned user: " + args[0]);
+				player.getServer().broadcastMessage(ChatColor.DARK_RED.toString() + args[0] + " has been banned!");
+				if(player.getServer().getPlayerExact(args[0]) != null) {
+					player.getServer().getPlayerExact(args[0]).kickPlayer("You are banned on this server!");
+				}
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -42,6 +45,11 @@ public class Ban implements ICommand {
 				
 				URL url = new URL("http://hawksservers.com/webadmin/banUser.php?uname=" + URLEncoder.encode(name, "UTF-8") +"&reason=" + URLEncoder.encode(sb.toString(), "UTF-8"));
 				url.openStream();
+				player.getServer().broadcastMessage(ChatColor.DARK_RED.toString() + args[0] + " has been banned!");
+				if(player.getServer().getPlayerExact(args[0]) != null) {
+					player.getServer().getPlayerExact(args[0]).kickPlayer(sb.toString());
+				}
+
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
