@@ -12,7 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Ban;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.ICommand;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Experience;
-import com.rscript.minecraft.plugins.HMSPlugin.commands.Hardcore;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Inventory;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Mute;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Nick;
@@ -28,13 +27,11 @@ public class HMSPlugin extends JavaPlugin{
 	Experience experience = new Experience(this);
 	Mute mute = new Mute(this);
 	Unmute unmute = new Unmute(this);
-	Hardcore hardcore = new Hardcore(this);
 	
-	ICommand[] cmd = new ICommand[8];
+	ICommand[] cmd = new ICommand[7];
 		
 	
 	HMSPlayerListener playerListener = new HMSPlayerListener(this);
-	HMSEntityListener entityListener = new HMSEntityListener(this);
 	
 	
 	public HMSPlugin() {
@@ -42,10 +39,9 @@ public class HMSPlugin extends JavaPlugin{
 		cmd[1] = new Experience(this);
 		cmd[2] = new Mute(this);
 		cmd[3] = new Unmute(this);
-		cmd[4] = new Hardcore(this);
-		cmd[5] = new Nick(this);
-		cmd[6] = new Ban();
-		cmd[7] = new Unban();
+		cmd[4] = new Nick(this);
+		cmd[5] = new Ban();
+		cmd[6] = new Unban();
 	}
 	
 	public void onDisable() {
@@ -63,7 +59,6 @@ public class HMSPlugin extends JavaPlugin{
 		PluginDescriptionFile pdf = this.getDescription();
 		
 		this.getServer().getPluginManager().registerEvents(playerListener, this);
-		this.getServer().getPluginManager().registerEvents(entityListener, this);
 
 		
 		
