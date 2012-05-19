@@ -20,8 +20,8 @@ public class Ban implements ICommand {
 			try {
 				URL url = new URL("http://hawksservers.com/webadmin/banUser.php?" + "uname=" + URLEncoder.encode(args[0], "UTF-8") + "&reason=" + URLEncoder.encode("You are banned on this server!", "UTF-8"));
 				url.openStream();
-				player.sendMessage(ChatColor.DARK_RED.toString() + "You have banned user: " + args[0]);
-				player.getServer().broadcastMessage(ChatColor.DARK_RED.toString() + args[0] + " has been banned!");
+				player.sendMessage(ChatColor.DARK_RED.toString() + "You have banned: " + args[0]);
+				player.getServer().broadcastMessage(ChatColor.DARK_RED.toString() + args[0] + " has been banned by " + ChatColor.DARK_BLUE.toString() + player.getDisplayName() + "!");
 				if(player.getServer().getPlayerExact(args[0]) != null) {
 					player.getServer().getPlayerExact(args[0]).kickPlayer("You are banned on this server!");
 				}
@@ -45,9 +45,9 @@ public class Ban implements ICommand {
 				
 				URL url = new URL("http://hawksservers.com/webadmin/banUser.php?uname=" + URLEncoder.encode(name, "UTF-8") +"&reason=" + URLEncoder.encode(sb.toString(), "UTF-8"));
 				url.openStream();
-				player.getServer().broadcastMessage(ChatColor.DARK_RED.toString() + args[0] + " has been banned!");
-				if(player.getServer().getPlayerExact(args[0]) != null) {
-					player.getServer().getPlayerExact(args[0]).kickPlayer(sb.toString());
+				player.getServer().broadcastMessage(ChatColor.DARK_RED.toString() + name + " was banned by " + ChatColor.DARK_BLUE.toString() + player.getDisplayName() + ChatColor.DARK_RED.toString() + " for" + ChatColor.AQUA.toString() + sb.toString());
+				if(player.getServer().getPlayerExact(name) != null) {
+					player.getServer().getPlayerExact(name).kickPlayer(sb.toString());
 				}
 
 			} catch (MalformedURLException e) {

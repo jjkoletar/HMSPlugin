@@ -16,6 +16,7 @@ public class Unmute implements ICommand {
 		if(args.length == 1) {
 			UnmuteTask task = new UnmuteTask(args[0], plugin);
 			task.run();
+			player.sendMessage("Player unmuted!");
 		}
 	}
 

@@ -1,6 +1,7 @@
 package com.rscript.minecraft.plugins.HMSPlugin;
 
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import org.bukkit.command.Command;
@@ -10,6 +11,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Ban;
+import com.rscript.minecraft.plugins.HMSPlugin.commands.Cake;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.ICommand;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Experience;
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Inventory;
@@ -21,27 +23,27 @@ import com.rscript.minecraft.plugins.HMSPlugin.commands.Unmute;
 public class HMSPlugin extends JavaPlugin{
 	private static Logger log;
 	
-	public HardcoreList list = new HardcoreList();
 	
 	Inventory inventory = new Inventory(this);
 	Experience experience = new Experience(this);
 	Mute mute = new Mute(this);
 	Unmute unmute = new Unmute(this);
 	
-	ICommand[] cmd = new ICommand[7];
+	ArrayList<ICommand> cmd = new ArrayList<ICommand>();
 		
 	
 	HMSPlayerListener playerListener = new HMSPlayerListener(this);
 	
 	
 	public HMSPlugin() {
-		cmd[0] = new Inventory(this);
-		cmd[1] = new Experience(this);
-		cmd[2] = new Mute(this);
-		cmd[3] = new Unmute(this);
-		cmd[4] = new Nick(this);
-		cmd[5] = new Ban();
-		cmd[6] = new Unban();
+		cmd.add(new Inventory(this));
+		cmd.add(new Experience(this));
+		cmd.add(new Mute(this));
+		cmd.add(new Unmute(this));
+		cmd.add(new Nick(this));
+		cmd.add(new Ban());
+		cmd.add(new Unban());
+		cmd.add(new Cake());
 	}
 	
 	public void onDisable() {

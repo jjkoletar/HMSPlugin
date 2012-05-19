@@ -10,12 +10,15 @@ import java.net.URLEncoder;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import com.rscript.minecraft.plugins.HMSPlugin.commands.Mute;
+import com.rscript.minecraft.plugins.HMSPlugin.commands.Nick;
 
 public class HMSPlayerListener implements Listener {
 	HMSPlugin plugin;
@@ -25,13 +28,12 @@ public class HMSPlayerListener implements Listener {
 	}
 	
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChat(PlayerChatEvent event) {
-		if(Mute.muted.contains(event.getPlayer().getName())) {
+		if(Mute.muted.contains(event.getPlayer().getName().toLowerCase())) {
 			event.getPlayer().sendMessage(ChatColor.DARK_RED.toString() + "You are muted!");
 			event.setCancelled(true);
 		}
-		event.setMessage(event.getMessage().replace(event.getPlayer().getName().toLowerCase(), event.getPlayer().getDisplayName()));
 	}
 	
 	@EventHandler
@@ -55,12 +57,18 @@ public class HMSPlayerListener implements Listener {
 				event.disallow(PlayerLoginEvent.Result.KICK_BANNED,  "You are banned: " + reader.readLine());
 				reader.close();
 			}
-			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		if(Nick.nicknames.get(event.getPlayer().getName().toLowerCase()) != null) {
+			event.getPlayer().setDisplayName(Nick.nicknames.get(event.getPlayer().getName().toLowerCase()));
 		}
 	}
 	

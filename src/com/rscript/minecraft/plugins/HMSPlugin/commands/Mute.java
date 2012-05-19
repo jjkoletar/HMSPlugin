@@ -30,17 +30,18 @@ public class Mute implements ICommand {
 			try {
 				int multiplier = 1;
 			    int time = Integer.parseInt(args[1]);
-			    if (args[2].toLowerCase().contains("seconds")) {
+			    if (args[2].toLowerCase().contains("second")) {
 			    	multiplier = 20;
 			    }
-			    else if (args[2].toLowerCase().contains("minutes")) {
+			    else if (args[2].toLowerCase().contains("minute")) {
 			    	multiplier = 20*60;
 			    }
-			    else if (args[2].toLowerCase().contains("hours")) {
+			    else if (args[2].toLowerCase().contains("hour")) {
 			    	multiplier = 20*60*60;
 			    }
 			    plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new UnmuteTask(args[0], plugin), Long.valueOf(multiplier*time).longValue());
 			    muted.add(args[0].toLowerCase());
+				player.sendMessage(ChatColor.BLUE.toString() + "Muted!");
 			}
 			catch(NumberFormatException exception) {
 				player.sendMessage("You did something wrong, idiot.");

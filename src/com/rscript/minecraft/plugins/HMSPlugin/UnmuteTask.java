@@ -14,7 +14,7 @@ public class UnmuteTask implements Runnable {
 	}
 	
 	public void run() {
-		Mute.muted.remove(playername);
+		Mute.muted.remove(playername.toLowerCase());
 		if(plugin.getServer().getPlayer(playername) != null) {
 			plugin.getServer().getPlayer(playername).sendMessage(ChatColor.BLUE.toString() + "You have been unmuted!");
 		}

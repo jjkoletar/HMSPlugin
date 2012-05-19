@@ -27,3 +27,6 @@ commands:
     unban:
         permission: hawk.unban
         usage: /unban [username]
+    cake:
+        permission: hawk.cake
+        usage: /cake
