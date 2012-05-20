@@ -34,7 +34,7 @@ public class Nick implements ICommand {
 				player.setDisplayName(player.getName());
 				return;
 			}
-			args[0] = args[0].replaceAll("(&([a-f0-9kK]))", "\u00A7$2");
+			args[0] = args[0].replaceAll("(&([a-f0-9k-orR]))", "\u00A7$2");
 			nicknames.put(player.getName().toLowerCase(), args[0]);
 			player.setDisplayName(args[0]);
 			return;
@@ -49,7 +49,7 @@ public class Nick implements ICommand {
 				nicked.setDisplayName(nicked.getName());
 				return;
 			}
-			args[1] = args[1].replaceAll("(&([a-f0-9kK]))", "\u00A7$2");
+			args[1] = args[1].replaceAll("(&([a-f0-9k-orR]))", "\u00A7$2");
 			nicknames.put(nicked.getName().toLowerCase(), args[1]);
 			nicked.setDisplayName(args[1]);
 		}

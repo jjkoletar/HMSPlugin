@@ -1,0 +1,41 @@
+<project name="HMSPlugin" default="dist" basedir=".">
+	<property name="name" value="HMSPlugin"/>
+
+	<property name="src" location="src"/>
+	<property name="bin" location="antbin"/>
+	<property name="dist" location="."/>
+	<property name="mf" location="MANIFEST.MF"/>
+	
+	
+	<target name="init">
+		<mkdir dir="${bin}"/>
+	</target>
+	
+	<classpath>
+		<pathelement path="${classpath}"/>
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</classpath>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+		</javac>
+	</target>
+	
+	<target name="dist" depends="compile">
+		<manifest file="${mf}">
+		</manifest>
+		<jar jarfile="${dist}/${name}.jar" manifest="${mf}">
+			<fileset dir="${bin}"/>
+			<fileset file="${src}/plugin.yml"/>
+			<fileset file="${src}/config.yml"/>
+		</jar>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${bin}"/>
+		<delete file="${dist}/${name}.jar"/>
+		<delete file="${mf}"/>
+	</target>
+</project>
