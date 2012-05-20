@@ -12,15 +12,15 @@
 		<mkdir dir="${bin}"/>
 	</target>
 	
-	<path id="project.class.path">
-		<pathelement location="lib/bukkit.jar"/>
-		<pathelement path="${java.class.path}/"/>
-	    <pathelement path="${additional.path}"/>
+	<path id="HMS.jars">
+	    <fileset dir="${lib}">
+	        <include name="**/*.jar"/>
+	    </fileset>
 	</path>
-
 	
 	<target name="compile" depends="init">
 		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+			<classpath refid="HMS.jars" />
 		</javac>
 	</target>
 	
