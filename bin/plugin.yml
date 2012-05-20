@@ -1,0 +1,32 @@
+name: HMSPlugin
+version: Beta
+main: com.rscript.minecraft.plugins.HMSPlugin.HMSPlugin
+
+commands:
+    inv:
+        permission: hawk.inventory
+        usage: /inv [see/switch/end]
+    exp:
+        permission: hawk.experience
+        usage: /inv <username> [level]
+    mute:
+        permission: hawk.mute
+        usage: /mute *username* *time*
+    unmute:
+        permission: hawk.unmute
+        usage: /unmute *username*
+    hardcore:
+        permission: hawk.hardcore
+        usage: /hardcore
+    nick:
+        permission: hawk.nick
+        usage: /nick <username> [nickname]
+    ban:
+        permission: hawk.ban
+        usage: /ban [username] <reason>
+    unban:
+        permission: hawk.unban
+        usage: /unban [username]
+    cake:
+        permission: hawk.cake
+        usage: /cake
