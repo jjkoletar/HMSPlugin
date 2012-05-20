@@ -4,6 +4,7 @@
 	<property name="src" location="src"/>
 	<property name="bin" location="antbin"/>
 	<property name="dist" location="."/>
+	<property name="lib" location="lib/"/>
 	<property name="mf" location="MANIFEST.MF"/>
 	
 	
@@ -12,7 +13,7 @@
 	</target>
 	
 	<path id="project.class.path">
-		<pathelement location="lib/"/>
+		<pathelement location="lib/bukkit.jar"/>
 		<pathelement path="${java.class.path}/"/>
 	    <pathelement path="${additional.path}"/>
 	</path>
